@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "main": "public/Main.js",
-  "homepage": "./addEntry",
+  "homepage": "./ViewEntry",
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
     "@testing-library/jest-dom": "^5.14.1",
@@ -35,7 +35,7 @@
     "build": "npm run build-react && electron-builder",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start-electron": "nodemon --watch ./public/* --exec \"electron .\"",
+    "start-electron": "nodemon --watch ./public/* --exec \"electron --trace-warnings .\"",
     "dev": "concurrently \"npm run start-react\" \"wait-on http://localhost:3000 && npm run start-electron\""
   },
   "eslintConfig": {

@@ -15,62 +15,62 @@ const FormComponent = (props)=>{
                 </Form.Item>
 
 
-               <Form.Item name="tubeSize" label="Tube Size" initialValue={props.initialValues.TubeSize}>
+                    <Form.Item name="tubeSize" label="Tube Size" initialValue={props.initialValues.TubeSize} rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-               <Form.Item name="date" label="Date" >
+                    <Form.Item name="date" label="Date" rules={[{ required: true }]} >
                     <DatePicker format="DD/MM/YY" />
                 </Form.Item>
-               <Form.Item name="party" label="Party Name" initialValue={props.initialValues.PartyName}>
+                    <Form.Item name="party" label="Party Name" initialValue={props.initialValues.PartyName} rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-               <Form.Item name="cylinderNo" label="Cylider No" initialValue={props.initialValues.Cylinder}>
+                    <Form.Item name="cylinderNo" label="Cylider No" initialValue={props.initialValues.Cylinder} rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-               <Form.Item name="make" label="Make" initialValue={props.initialValues.Make}>
+                    <Form.Item name="make" label="Make" initialValue={props.initialValues.Make} rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-               <Form.Item name="specNo" label="Specification No" initialValue={props.initialValues.Spfno}>
+                    <Form.Item name="specNo" label="Specification No" initialValue={props.initialValues.Spfno} rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-               <Form.Item name="cylinderCapacity" label="Cylinder Capacity" initialValue={props.initialValues.CylCap}>
+                    <Form.Item name="cylinderCapacity" label="Cylinder Capacity" initialValue={props.initialValues.CylCap} rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-               <Form.Item name="originalWeight" label="Original Weight" initialValue={props.initialValues.OrgWg}>
+                    <Form.Item name="originalWeight" label="Original Weight" initialValue={props.initialValues.OrgWg} rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-               <Form.Item name="currWeight" label="Current Weight" initialValue={props.initialValues.CrtWg}>
+                    <Form.Item name="currWeight" label="Current Weight" initialValue={props.initialValues.CrtWg} rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
 
             </Col>
 
             <Col span={12}>
-               <Form.Item name="waterWeight" label="With Water Weight" initialValue={props.initialValues.wtrWg}>
+                    <Form.Item name="waterWeight" label="With Water Weight" initialValue={props.initialValues.wtrWg} rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-               <Form.Item name="testPressure" label="Test Pressure" initialValue={props.initialValues.TestPrs}>
+                    <Form.Item name="testPressure" label="Test Pressure" initialValue={props.initialValues.TestPrs} rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
                <Form.Item name="lastTestDate" label="Last test Date" >
                     <DatePicker format="DD/MM/YY" />
                 </Form.Item>
-               <Form.Item name="C1" label="C1" initialValue={props.initialValues.C1}>
+                    <Form.Item name="C1" label="C1" initialValue={props.initialValues.C1} rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-               <Form.Item name="C2" label="C2" initialValue={props.initialValues.C2}>
+                    <Form.Item name="C2" label="C2" initialValue={props.initialValues.C2} rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-               <Form.Item name="C3" label="C3" initialValue={props.initialValues.C3}>
+                    <Form.Item name="C3" label="C3" initialValue={props.initialValues.C3} rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-               <Form.Item name="cylWaterCapacity" label="Cyl. Water Capacity" initialValue={props.initialValues.Cylwatercap}>
+                    <Form.Item name="cylWaterCapacity" label="Cyl. Water Capacity" initialValue={props.initialValues.Cylwatercap} rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-               {/* <Form.Item name="gas" label="Working Gas" >
+                    {/* <Form.Item name="gas" label="Working Gas"  rules={[{ required: true}]}>
                     <Input />
                 </Form.Item> */}
-               <Form.Item name="gasCapacity" label="Capacity gas in c. mts" initialValue={props.initialValues.capgas}>
+                    <Form.Item name="gasCapacity" label="Capacity gas in c. mts" initialValue={props.initialValues.capgas} rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
 

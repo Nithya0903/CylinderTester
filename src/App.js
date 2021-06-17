@@ -1,10 +1,11 @@
-import {Layout,Col, Row, Typography } from "antd";
-import { Content} from 'antd/lib/layout/layout';
+import {Layout,Col, Row, Typography,Image } from "antd";
+import { Content,Footer} from 'antd/lib/layout/layout';
 import { HashRouter, Route, Switch} from 'react-router-dom';
 import Entry from "./components/Entry"
 import NavBar from "./components/NavBar";
 import Report from "./components/Report";
 import ViewEntry from "./components/ViewEntry";
+import logo from "./assets/logo.png"
 import './App.css';
 
 function App() {
@@ -37,7 +38,7 @@ function App() {
               <Route path="/Report">
          <Report />
               </Route>
-              <Route path="/addEntry">
+              <Route exact path="/">
                 <Entry />
               </Route>
               </Switch>
@@ -47,7 +48,17 @@ function App() {
      </div>
 
         </Content>
-     
+        <Footer >
+          <Row style={{ dispaly: 'flex', justifyContent: 'center' }} >
+            <Image preview={false}
+              width={100}
+              src={logo}
+            />
+        </Row>
+    
+         
+        </Footer>
+        
  </Layout>
     </HashRouter>
   );

@@ -10,7 +10,7 @@ const NavBar = ()=>{
         selectedKeys={[page]}
         inlineIndent={50}
     >
-        <Menu.Item key={"Entry"}>  <Link to="/addEntry"> Add Entry </Link></Menu.Item>
+        <Menu.Item key={"Entry"}>  <Link to="/"> Add Entry </Link></Menu.Item>
         <Menu.Item key={"View"}> <Link to="/ViewEntry"> View Entries </Link></Menu.Item>
         <Menu.Item key={"Report"}> <Link to="/Report"> Report </Link> </Menu.Item>
  

@@ -3,8 +3,9 @@ import React,{ useState,useEffect,useRef } from "react";
 import { getAllEntries } from "../dbHandler";
 import  ReactToPrint  from "react-to-print"
 import { PrinterOutlined } from "@ant-design/icons"
-
+import { formatDate, capitalize } from "../helper.js";
 const ComponentToPrint = React.forwardRef((props, ref) => {
+   
 return <div className="printCard" ref={ref} style={{ display: "flex", justifyContent: "center" }}>
         <Card bordered style={{ width:"90%",marginTop: "10px"}}>
             <Row style={{ justifyContent: "center" }}>
@@ -12,20 +13,20 @@ return <div className="printCard" ref={ref} style={{ display: "flex", justifyCon
             </Row>
             <Row> <br /></Row>
             <Row>
-                DATE OF INSPECTION
+            DATE OF INSPECTION: {formatDate(new Date())}
             </Row>
             <Row> <br /></Row>
             <Row>
-                <Col span={6}>PARTY NAME:</Col>
-                <Col span={6}>TYPE OF GAS</Col>
-                <Col span={6}>WORKING PRESSURE</Col>
-                <Col span={6}>NO. OF CYLINDERS TESTED</Col>
+            <Col span={6}>PARTY NAME: {props.data ? capitalize(props.data[0].PartyName) : ""}</Col>
+            <Col span={6}>TYPE OF GAS: {props.data ? capitalize("") : ""}</Col>
+            <Col span={6}>WORKING PRESSURE: {props.data ? props.data[0].TestPrs : ""} </Col>
+            <Col span={6}>NO. OF CYLINDERS TESTED: {props.data ?props.data.length : ""}</Col>
             </Row>
             <Row> <br /></Row>
             <Table
                 columns={props.columns}
                 dataSource={props.data}
-            pagination={false}
+            pagination
             >
             </Table>
         </Card>

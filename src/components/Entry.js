@@ -1,7 +1,8 @@
-import {Card, Button,Space ,Form, Row,Col,Input,DatePicker,message} from "antd"
+import {Card, Button,Space ,Form, Row,Col,Input,DatePicker,message,Select} from "antd"
 import { addEntry,getNewRef } from "../dbHandler";
 import {  useState,useEffect } from "react";
 const Entry = ()=>{
+    const { Option } = Select;
     const [form] = Form.useForm();
    const [ref,setref] = useState()
   
@@ -39,62 +40,71 @@ return <Card style={{marginTop:"20px"}}>
                     {ref}
                 </Form.Item>
             
-                <Form.Item name="tubeSize" label="Tube Size">
+                <Form.Item name="tubeSize" label="Tube Size"  rules={[{ required: true}]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="date" label="Date">
+                <Form.Item name="date" label="Date" rules={[{ required: true }]}>
                     <DatePicker format="DD/MM/YY"/>
                 </Form.Item>
-                <Form.Item name="party" label="Party Name">
+                <Form.Item name="party" label="Party Name" rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="cylinderNo" label="Cylider No">
+                <Form.Item name="cylinderNo" label="Cylider No" rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="make" label="Make">
+                <Form.Item name="make" label="Make" rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="specNo" label="Specification No">
+                <Form.Item name="specNo" label="Specification No" rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="cylinderCapacity" label="Cylinder Capacity">
+                <Form.Item name="cylinderCapacity" label="Cylinder Capacity"  rules={[{ required: true }]}>
                   <Input />
                 </Form.Item>
-                <Form.Item name="originalWeight" label="Original Weight">
+                <Form.Item name="originalWeight" label="Original Weight" rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="currWeight" label="Current Weight">
+                <Form.Item name="currWeight" label="Current Weight" rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
 
     </Col>
     
     <Col span={12}>
-                <Form.Item name="waterWeight" label="With Water Weight">
+                <Form.Item name="waterWeight" label="With Water Weight" rules={[{ required: true }]}>
                     <Input />
      </Form.Item>
-                <Form.Item name="testPressure" label="Test Pressure">
+                <Form.Item name="testPressure" label="Test Pressure" rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="lastTestDate" label="Last test Date">
+                <Form.Item name="lastTestDate" label="Last test Date" rules={[{ required: true }]}>
                     <DatePicker format="DD/MM/YY"/>
                 </Form.Item>
-                <Form.Item name="C1" label="C1">
+                <Form.Item name="C1" label="C1" rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="C2" label="C2">
+                <Form.Item name="C2" label="C2" rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="C3" label="C3">
+                <Form.Item name="C3" label="C3" rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="cylWaterCapacity" label="Cyl. Water Capacity">
+                <Form.Item name="cylWaterCapacity" label="Cyl. Water Capacity" rules={[{ required: true }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="gas" label="Working Gas">
-                    <Input />
+                <Form.Item name="gas" label="Working Gas" rules={[{ required: true}]}>
+                    <Select
+                        allowClear
+                    >
+                      
+                            <Option value="Oxygen"> Oxygen</Option>
+                            <Option value="Carbon Dioxide"> Carbon Dioxide</Option>
+                            <Option value="Argon"> Argon</Option>
+                            <Option value="Nitrogen"> Nitrogen</Option>
+                            <Option value="Nitrous Oxide">Nitrous Oxide</Option>
+                    </Select>
                 </Form.Item>
-                  <Form.Item name="gasCapacity" label="Capacity gas in c. mts">
+                <Form.Item name="gasCapacity" label="Capacity gas in c. mts" rules={[{ required: true }]}>
     <Input />
       </Form.Item>
                 
