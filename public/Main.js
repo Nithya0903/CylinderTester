@@ -27,38 +27,22 @@ const createWindow = () => {
             : `file://${path.join(__dirname, '../build/index.html')}` // Loading build file if in production
     );
 
-    // Setting Window Icon - Asset file needs to be in the public/images folder.
-    // mainWindow.setIcon(path.join(__dirname, 'images/appicon.ico'));
-
+    
     // In development mode, if the window has loaded, then load the dev tools.
-    if (isDev) {
-        mainWindow.webContents.on('did-frame-finish-load', () => {
-            mainWindow.webContents.openDevTools({ mode: 'detach' });
-        });
-    }
+    // if (isDev) {
+    //     mainWindow.webContents.on('did-frame-finish-load', () => {
+    //         mainWindow.webContents.openDevTools({ mode: 'detach' });
+    //     });
+    // }
 };
-// const session = mainWindow.webContents.session
+
 app.setPath(
     'userData',
     isDev
         ? path.join(app.getAppPath(), 'userdata/') // In development it creates the userdata folder where package.json is
         : path.join(process.resourcesPath, 'userdata/') // In production it creates userdata folder in the resources folder
 );
-// app.whenReady().then(async () => {
-//     await createWindow(); // Create the mainWindow
 
-//     // If you want to add React Dev Tools
-//     if (isDev) {
-//         await session.defaultSession
-//             .loadExtension(
-//                 path.join(__dirname, `../userdata/extensions/react-dev-tools`) // This folder should have the chrome extension for React Dev Tools. Get it online or from your Chrome extensions folder.
-//             )
-//             .then((name) => console.log('Dev Tools Loaded'))
-//             .catch((err) => console.log(err));
-//     }
-
-   
-// });
 app.whenReady().then(createWindow);
 // Exiting the app
 app.on('window-all-closed', () => {
@@ -95,12 +79,11 @@ ipcMain.handle('get-nextref',async (event,args) => {
         driver: sqlite3.Database
     }).then(async (db) => {
        const data = await db.get('SELECT * FROM cylinder_values WHERE Id = (SELECT MAX(Id) FROM cylinder_values)')
-       console.log(data)
-   console.log("Next ID:", data.Id)
+
         return data.Id 
 
        
-    }).catch((err)=>{console.log(err);return null})
+    }).catch((err)=>{return null})
     return id
    
 });
@@ -112,7 +95,7 @@ ipcMain.handle('addEntry', async (event, args) => {
         driver: sqlite3.Database
     }).then(async (db) => {
 
-      console.log(args)
+
 db.get('INSERT INTO cylinder_values VALUES (:ref,:tubeSize ,:date,:party,:cylinderNo,:make,:specNo,:cylinderCapacity,:originalWeight,:currWeight,:waterWeight,:testPressure,:lastTestDate,:C1,:C2,:C3,:cylWaterCapacity,:gas,:gasCapacity)',[...args])
         
 
@@ -128,8 +111,7 @@ db.get('INSERT INTO cylinder_values VALUES (:ref,:tubeSize ,:date,:party,:cylind
             filename: dbPath,
             driver: sqlite3.Database
         }).then(async (db) => {
-console.log("tryning to update")
-console.log(args)
+
 db.run("UPDATE cylinder_values SET TubeSize = ?, Date = ?, PartyName= ?, Cylinder = ? , Make = ?, Spfno = ?, CylCap = ?, OrgWg = ?, CrtWg= ?, wtrWg = ?, TestPrs = ?, LastTstDate = ?,C1 = ?,C2 =?, C3 =?, Cylwatercap = ?, capgas= ? WHERE Id= ?", args)
  
     //         db.run("UPDATE cylinder_values SET TubeSize = :tubeSize  WHERE Id= :Id ",{':tubeSize' :190,':Id':1})
@@ -165,7 +147,7 @@ ipcMain.handle('getEntrybyRef', async (event, args) => {
         driver: sqlite3.Database
     }).then(async (db) => {
         const data = await db.get('SELECT * FROM cylinder_values WHERE Id=?', args)
-        console.log(data);
+  
         return data
 
 
@@ -185,7 +167,7 @@ ipcMain.handle('deleteEntry', async (event, args) => {
        .catch((err)=>{throw err})
        
 
-    }).catch((err) => { console.log(err); return null })
+    }).catch((err) => {  return null })
     return data
 
 })

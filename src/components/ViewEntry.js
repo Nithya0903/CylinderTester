@@ -33,8 +33,6 @@ const ViewEntry = ()=>{
                 
                     })
                 }).catch((values)=>{
-                    console.log("ERROR.....")
-                    console.log(values)
                     message.error("Failed to update entry")})
 
             
@@ -43,7 +41,6 @@ const ViewEntry = ()=>{
     const DeleteHandler = async()=>{
         deleteEntry(ref).then(()=>{
             message.success(" Entry No." + ref + " deleted")
-            // window.location.reload()
        handleClick()
         })
     }
