@@ -29,11 +29,11 @@ const createWindow = () => {
 
     
     // In development mode, if the window has loaded, then load the dev tools.
-    // if (isDev) {
-    //     mainWindow.webContents.on('did-frame-finish-load', () => {
-    //         mainWindow.webContents.openDevTools({ mode: 'detach' });
-    //     });
-    // }
+    if (isDev) {
+        mainWindow.webContents.on('did-frame-finish-load', () => {
+            mainWindow.webContents.openDevTools({ mode: 'detach' });
+        });
+    }
 };
 
 app.setPath(
@@ -106,13 +106,13 @@ db.get('INSERT INTO cylinder_values VALUES (:ref,:tubeSize ,:date,:party,:cylind
     })
 
     ipcMain.handle('updateEntry', async (event, args) => {
-
+    
         await open({
             filename: dbPath,
             driver: sqlite3.Database
         }).then(async (db) => {
 
-db.run("UPDATE cylinder_values SET TubeSize = ?, Date = ?, PartyName= ?, Cylinder = ? , Make = ?, Spfno = ?, CylCap = ?, OrgWg = ?, CrtWg= ?, wtrWg = ?, TestPrs = ?, LastTstDate = ?,C1 = ?,C2 =?, C3 =?, Cylwatercap = ?, capgas= ? WHERE Id= ?", args)
+db.run("UPDATE cylinder_values SET TubeSize = ?, Date = ?, PartyName= ?, Cylinder = ? , Make = ?, Spfno = ?, CylCap = ?, OrgWg = ?, CrtWg= ?, wtrWg = ?, TestPrs = ?, LastTstDate = ?,C1 = ?,C2 =?, C3 =?, Cylwatercap = ?, gas=?,capgas= ? WHERE Id= ?", args)
  
     //         db.run("UPDATE cylinder_values SET TubeSize = :tubeSize  WHERE Id= :Id ",{':tubeSize' :190,':Id':1})
 .catch((err) => { throw err})

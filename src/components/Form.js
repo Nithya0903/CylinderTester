@@ -16,7 +16,7 @@ const FormComponent = (props)=>{
                    {props.initialValues.Id}
                 </Form.Item>
 
-                    <Form.Item name="tubeSize" label="Tube Size" initialValue={props.initialValues.TubeSize} rules={[{ required: true }, { pattern: '^([-]?[1-9][0-9]*|0)$', message: "incorrect input" }]}>
+                    <Form.Item name="tubeSize" label="Tube Size" initialValue={props.initialValues.TubeSize} rules={[{ required: true }, { pattern: '^[+]?([1-9]+(?:[\.][0-9]*)?|\.[0-9]+)$', message: "incorrect input" }]}>
                     <Input  />
                 </Form.Item>
                     <Form.Item name="date" label="Date" initialValue={convertMoment(props.initialValues.Date)}rules={[{ required: true, message: "Required" }]} >
@@ -34,38 +34,38 @@ const FormComponent = (props)=>{
                     <Form.Item name="specNo" label="Specification No" initialValue={props.initialValues.Spfno} rules={[{ required: true , message: "Required"}]}>
                     <Input />
                 </Form.Item>
-                    <Form.Item name="cylinderCapacity" label="Cylinder Capacity" initialValue={props.initialValues.CylCap} rules={[{ required: true, message: "Required" }, { pattern: '^([-]?[1-9][0-9]*|0)$', message: "incorrect input" }]}>
+                    <Form.Item name="cylinderCapacity" label="Cylinder Capacity" initialValue={props.initialValues.CylCap} rules={[{ required: true, message: "Required" }, { pattern: '^[+]?([1-9]+(?:[\.][0-9]*)?|\.[0-9]+)$', message: "incorrect input" }]}>
                         <Input type="number"/>
                 </Form.Item>
-                    <Form.Item name="originalWeight" label="Original Weight" initialValue={props.initialValues.OrgWg} rules={[{ required: true, message: "Required" }, { pattern: '^([-]?[1-9][0-9]*|0)$', message: "incorrect input"}]}>
+                    <Form.Item name="originalWeight" label="Original Weight" initialValue={props.initialValues.OrgWg} rules={[{ required: true, message: "Required" }, { pattern: '^[+]?([1-9]+(?:[\.][0-9]*)?|\.[0-9]+)$', message: "incorrect input"}]}>
                     <Input />
                 </Form.Item>
-                    <Form.Item name="currWeight" label="Current Weight" initialValue={props.initialValues.CrtWg} rules={[{ required: true, message: "Required" }, { pattern: '^([-]?[1-9][0-9]*|0)$', message: "incorrect input" }]}>
+                    <Form.Item name="currWeight" label="Current Weight" initialValue={props.initialValues.CrtWg} rules={[{ required: true, message: "Required" }, { pattern: '^[+]?([1-9]+(?:[\.][0-9]*)?|\.[0-9]+)$', message: "incorrect input" }]}>
                     <Input />
                 </Form.Item>
 
             </Col>
 
             <Col span={12}>
-                    <Form.Item name="waterWeight" label="With Water Weight" initialValue={props.initialValues.wtrWg} rules={[{ required: true, message: "Required" }, { pattern: '^([-]?[1-9][0-9]*|0)$', message: "incorrect input" }]}>
+                    <Form.Item name="waterWeight" label="With Water Weight" initialValue={props.initialValues.wtrWg} rules={[{ required: true, message: "Required" }, { pattern: '^[+]?([1-9]+(?:[\.][0-9]*)?|\.[0-9]+)$', message: "incorrect input" }]}>
                     <Input />
                 </Form.Item>
-                    <Form.Item name="testPressure" label="Test Pressure" initialValue={props.initialValues.TestPrs} rules={[{ required: true, message: "Required" }, { pattern: '^([-]?[1-9][0-9]*|0)$', message: "incorrect input"}]}>
+                    <Form.Item name="testPressure" label="Test Pressure" initialValue={props.initialValues.TestPrs} rules={[{ required: true, message: "Required" }, { pattern: '^[+]?([1-9]+(?:[\.][0-9]*)?|\.[0-9]+)$', message: "incorrect input"}]}>
                     <Input />
                 </Form.Item>
                     <Form.Item name="lastTestDate" label="Last test Date" initialValue={convertMoment(props.initialValues.LastTstDate)} rules={[{ required: true, message: "Required" }]}>
                     <DatePicker format="DD/MM/YY" />
                 </Form.Item>
-                    <Form.Item name="C1" label="C1" initialValue={props.initialValues.C1} rules={[{ required: true, message: "Required" }, { pattern: '^([-]?[1-9][0-9]*|0)$', message: "incorrect input" }]}>
+                    <Form.Item name="C1" label="C1" initialValue={props.initialValues.C1} rules={[{ required: true, message: "Required" }, { pattern: '^[+]?([1-9]+(?:[\.][0-9]*)?|\.[0-9]+)$', message: "incorrect input" }]}>
                     <Input />
                 </Form.Item>
-                    <Form.Item name="C2" label="C2" initialValue={props.initialValues.C2} rules={[{ required: true, message: "Required" }, { pattern: '^([-]?[1-9][0-9]*|0)$', message: "incorrect input"}]}>
+                    <Form.Item name="C2" label="C2" initialValue={props.initialValues.C2} rules={[{ required: true, message: "Required" }, { pattern: '^[+]?([1-9]+(?:[\.][0-9]*)?|\.[0-9]+)$', message: "incorrect input"}]}>
                     <Input />
                 </Form.Item>
-                    <Form.Item name="C3" label="C3" initialValue={props.initialValues.C3} rules={[{ required: true, message: "Required" }, { pattern: '^([-]?[1-9][0-9]*|0)$', message: "incorrect input"}]}>
+                    <Form.Item name="C3" label="C3" initialValue={props.initialValues.C3} rules={[{ required: true, message: "Required" }, { pattern: '^[+]?([1-9]+(?:[\.][0-9]*)?|\.[0-9]+)$', message: "incorrect input"}]}>
                     <Input />
                 </Form.Item>
-                    <Form.Item name="cylWaterCapacity" label="Cyl. Water Capacity" initialValue={props.initialValues.Cylwatercap} rules={[{ required: true, message: "Required" }, { pattern: '^([-]?[1-9][0-9]*|0)$', message: "incorrect input"}]}>
+                    <Form.Item name="cylWaterCapacity" label="Cyl. Water Capacity" initialValue={props.initialValues.Cylwatercap} rules={[{ required: true, message: "Required" }, { pattern: '^[+]?([1-9]+(?:[\.][0-9]*)?|\.[0-9]+)$', message: "incorrect input"}]}>
                     <Input />
                 </Form.Item>
                     {/* <Form.Item name="gas" label="Working Gas"  rules={[{ required: true}]}>
@@ -83,7 +83,7 @@ const FormComponent = (props)=>{
                             <Option value="Nitrous Oxide">Nitrous Oxide</Option>
                         </Select>
                     </Form.Item>
-                    <Form.Item name="gasCapacity" label="Gas capacity" initialValue={props.initialValues.capgas} rules={[{ required: true, message: "Required" }, { pattern: '^([-]?[1-9][0-9]*|0)$', message: "incorrect input" }]}>
+                    <Form.Item name="gasCapacity" label="Gas capacity" initialValue={props.initialValues.capgas} rules={[{ required: true, message: "Required" }, { pattern: '^[+]?([1-9]+(?:[\.][0-9]*)?|\.[0-9]+)$', message: "incorrect input" }]}>
                     <Input />
                 </Form.Item>
 

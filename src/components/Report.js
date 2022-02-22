@@ -14,13 +14,13 @@ return <div className="printCard" ref={ref} style={{ display: "flex", justifyCon
             </Row>
             <Row> <br /></Row>
             <Row>
-            DATE OF INSPECTION: { props.data && props.data[0].Date ? formatDate(new Date(props.data[0].Date)): ""}
+            DATE OF INSPECTION: { props.data && props.data[0] && props.data[0].Date ? formatDate(new Date(props.data[0].Date)): ""}
             </Row>
             <Row> <br /></Row>
             <Row>
-            <Col span={8}>PARTY NAME: {props.data ? capitalize(props.data[0].PartyName) : ""}</Col>
-            <Col span={8}>WORKING PRESSURE: {props.data ? props.data[0].TestPrs : ""} </Col>
-            <Col span={8}>NO. OF CYLINDERS TESTED: {props.data ?props.data.length : ""}</Col>
+            <Col span={8}>PARTY NAME: {props.data && props.data[0]? capitalize(props.data[0].PartyName) : ""}</Col>
+            <Col span={8}>WORKING PRESSURE: {props.data && props.data[0]? props.data[0].TestPrs : ""} </Col>
+            <Col span={8}>NO. OF CYLINDERS TESTED: {props.data && props.data[0]?props.data.length : ""}</Col>
             </Row>
             <Row> <br /></Row>
             <Table

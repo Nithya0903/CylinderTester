@@ -53,7 +53,7 @@ return <Card style={{marginTop:"20px"}}>
                     {ref}
                 </Form.Item>
             
-                <Form.Item name="tubeSize" label="Tube Size" rules={[{ required: true, message: "Required" }, { pattern: '^([-]?[1-9][0-9]*|0)$', message: "incorrect input"}]}>
+                <Form.Item name="tubeSize" label="Tube Size" rules={[{ required: true, message: "Required" }, { pattern: '^[+]?([1-9]+(?:[\.][0-9]*)?|\.[0-9]+)$', message: "incorrect input"}]}>
                     <Input />
                 </Form.Item>
                 <Form.Item name="date" label="Date" rules={[{ required: true,message:"required" }]}>
@@ -71,38 +71,38 @@ return <Card style={{marginTop:"20px"}}>
                 <Form.Item name="specNo" label="Specification No" rules={[{ required: true, message: "Required" }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="cylinderCapacity" label="Cylinder Capacity" rules={[{ required: true, message: "Required" }, { pattern: '^([-]?[1-9][0-9]*|0)$', message: "incorrect input"}]}>
+                <Form.Item name="cylinderCapacity" label="Cylinder Capacity" rules={[{ required: true, message: "Required" }, { pattern: '^[+]?([1-9]+(?:[\.][0-9]*)?|\.[0-9]+)$', message: "incorrect input"}]}>
                   <Input />
                 </Form.Item>
-                <Form.Item name="originalWeight" label="Original Weight" rules={[{ required: true, message: "Required" }, { pattern: '^([-]?[1-9][0-9]*|0)$', message: "incorrect input" }]}>
+                <Form.Item name="originalWeight" label="Original Weight" rules={[{ required: true, message: "Required" }, { pattern: '^[+]?([1-9]+(?:[\.][0-9]*)?|\.[0-9]+)$', message: "incorrect input" }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="currWeight" label="Current Weight" rules={[{ required: true, message: "Required" }, { pattern: '^([-]?[1-9][0-9]*|0)$', message: "incorrect input"}]}>
+                <Form.Item name="currWeight" label="Current Weight" rules={[{ required: true, message: "Required" }, { pattern: '^[+]?([1-9]+(?:[\.][0-9]*)?|\.[0-9]+)$', message: "incorrect input"}]}>
                     <Input />
                 </Form.Item>
 
     </Col>
     
     <Col span={12}>
-                <Form.Item name="waterWeight" label="With Water Weight" rules={[{ required: true, message: "Required" }, { pattern: '^([-]?[1-9][0-9]*|0)$', message: "incorrect input"}]}>
+                <Form.Item name="waterWeight" label="With Water Weight" rules={[{ required: true, message: "Required" }, { pattern: '^[+]?([1-9]+(?:[\.][0-9]*)?|\.[0-9]+)$', message: "incorrect input"}]}>
                     <Input />
      </Form.Item>
-                <Form.Item name="testPressure" label="Test Pressure" rules={[{ required: true, message: "Required" }, { pattern: '^([-]?[1-9][0-9]*|0)$', message: "incorrect input"}]}>
+                <Form.Item name="testPressure" label="Test Pressure" rules={[{ required: true, message: "Required" }, { pattern: '^[+]?([1-9]+(?:[\.][0-9]*)?|\.[0-9]+)$', message: "incorrect input"}]}>
                     <Input />
                 </Form.Item>
                 <Form.Item name="lastTestDate" label="Last test Date" rules={[{ required: true, message: "Required" }]}>
                     <DatePicker format="DD/MM/YY"/>
                 </Form.Item>
-                <Form.Item name="C1" label="C1" rules={[{ required: true, message: "Required" }, { pattern: '^([-]?[1-9][0-9]*|0)$', message: "incorrect input" }]}>
+                <Form.Item name="C1" label="C1" rules={[{ required: true, message: "Required" }, { pattern: '^[+]?([1-9]+(?:[\.][0-9]*)?|\.[0-9]+)$', message: "incorrect input" }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="C2" label="C2" rules={[{ required: true, message: "Required" }, { pattern: '^([-]?[1-9][0-9]*|0)$', message: "incorrect input" }]}>
+                <Form.Item name="C2" label="C2" rules={[{ required: true, message: "Required" }, { pattern: '^[+]?([1-9]+(?:[\.][0-9]*)?|\.[0-9]+)$', message: "incorrect input" }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="C3" label="C3" rules={[{ required: true, message: "Required" }, { pattern: '^([-]?[1-9][0-9]*|0)$', message: "incorrect input" }]}>
+                <Form.Item name="C3" label="C3" rules={[{ required: true, message: "Required" }, { pattern: '^[+]?([1-9]+(?:[\.][0-9]*)?|\.[0-9]+)$', message: "incorrect input" }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="cylWaterCapacity" label="Cyl. Water Capacity" rules={[{ required: true, message: "Required" }, { pattern: '^([-]?[1-9][0-9]*|0)$', message: "incorrect input"}]}>
+                <Form.Item name="cylWaterCapacity" label="Cyl. Water Capacity" rules={[{ required: true, message: "Required" }, { pattern: '^[+]?([1-9]+(?:[\.][0-9]*)?|\.[0-9]+)$', message: "incorrect input"}]}>
                     <Input />
                 </Form.Item>
                 <Form.Item name="gas" label="Working Gas" rules={[{ required: true, message: "Required"}]}>
@@ -117,7 +117,7 @@ return <Card style={{marginTop:"20px"}}>
                             <Option value="Nitrous Oxide">Nitrous Oxide</Option>
                     </Select>
                 </Form.Item>
-                <Form.Item name="gasCapacity" label="Gas Capacity" rules={[{ required: true, message: "Required" }, { pattern: '^([-]?[1-9][0-9]*|0)$', message: "incorrect input"}]}>
+                <Form.Item name="gasCapacity" label="Gas Capacity" rules={[{ required: true, message: "Required" }, { pattern: '^[+]?([1-9]+(?:[\.][0-9]*)?|\.[0-9]+)$', message: "incorrect input"}]}>
     <Input />
       </Form.Item>
                 
