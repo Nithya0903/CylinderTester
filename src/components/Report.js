@@ -3,7 +3,8 @@ import React,{ useState,useEffect,useRef } from "react";
 import { getAllEntries } from "../dbHandler";
 import  ReactToPrint  from "react-to-print"
 import { PrinterOutlined } from "@ant-design/icons"
-import { formatDate, capitalize } from "../helper.js";
+import { formatDate, capitalize,permenantExp,tempExpansion,weightlossPercentage, after5 } from "../helper.js";
+
 const ComponentToPrint = React.forwardRef((props, ref) => {
    
 return <div className="printCard" ref={ref} style={{ display: "flex", justifyContent: "center" }}>
@@ -13,14 +14,13 @@ return <div className="printCard" ref={ref} style={{ display: "flex", justifyCon
             </Row>
             <Row> <br /></Row>
             <Row>
-            DATE OF INSPECTION: {formatDate(new Date())}
+            DATE OF INSPECTION: { props.data && props.data[0].Date ? formatDate(new Date(props.data[0].Date)): ""}
             </Row>
             <Row> <br /></Row>
             <Row>
-            <Col span={6}>PARTY NAME: {props.data ? capitalize(props.data[0].PartyName) : ""}</Col>
-            <Col span={6}>TYPE OF GAS: {props.data ? capitalize("") : ""}</Col>
-            <Col span={6}>WORKING PRESSURE: {props.data ? props.data[0].TestPrs : ""} </Col>
-            <Col span={6}>NO. OF CYLINDERS TESTED: {props.data ?props.data.length : ""}</Col>
+            <Col span={8}>PARTY NAME: {props.data ? capitalize(props.data[0].PartyName) : ""}</Col>
+            <Col span={8}>WORKING PRESSURE: {props.data ? props.data[0].TestPrs : ""} </Col>
+            <Col span={8}>NO. OF CYLINDERS TESTED: {props.data ?props.data.length : ""}</Col>
             </Row>
             <Row> <br /></Row>
             <Table
@@ -70,6 +70,14 @@ const [to,setTo] = useState(100)
          let modified = entries.map((entry, index) => {
              entry.key = index
              entry.slNo = index + 1
+             entry.perm = permenantExp(entry)
+             entry.temp = tempExpansion(entry)
+             entry.wgtloss = weightlossPercentage(entry)
+             entry.pass = "FAILED"
+             entry.strech = entry.perm*100/entry.temp
+             entry.NxtTstDate = after5(entry.Date)
+             if (entry.wgtloss <= 5 && entry.strech <= 10 && entry.perm <= entry.Cylwatercap)
+             entry.pass = "PASSED"
              return entry
          })
          console.log(modified);
@@ -79,9 +87,17 @@ const [to,setTo] = useState(100)
 const [data,setData] = useState()
 useEffect(()=>{
     getAllEntries(0,101).then(entries => {
-        let modified = entries.map((entry, index) => {
+        let modified =  entries.map((entry, index) => {
             entry.key = index
             entry.slNo = index+1
+            entry.perm = permenantExp(entry)
+            entry.temp = tempExpansion(entry)
+            entry.wgtloss = weightlossPercentage(entry)
+            entry.pass = "FAILED"
+            entry.NxtTstDate = after5(entry.Date)
+           entry.strech = entry.perm * 100 / entry.temp
+            if (entry.wgtloss <= 5 && entry.strech <= 10 && entry.perm <= entry.Cylwatercap)
+                entry.pass = "PASSED"
             return entry
         })
         console.log(modified);
@@ -102,6 +118,12 @@ useEffect(()=>{
             title: "Cylinder Number",
             dataIndex: "Cylinder",
             key: "Cylinder Number",
+            align: "center",
+        },
+        {
+            title: "Type of gas",
+            dataIndex: "gas",
+            key: "gas",
             align: "center",
         },
         {
@@ -139,7 +161,7 @@ useEffect(()=>{
         },
         {
             title: "Weigh Loss %",
-            dataIndex: "Operation",
+            dataIndex: "wgtloss",
             key: "id",
             align: "center",
 
@@ -160,7 +182,7 @@ useEffect(()=>{
         },
         {
             title: "Temporary Expansion of water in CC",
-            dataIndex: "Operation",
+            dataIndex: "temp",
             key: "id",
             align: "center",
 
@@ -168,29 +190,29 @@ useEffect(()=>{
 
         {
             title: "Permanent Expansion of water in CC",
-            dataIndex: "Operation",
-            key: "id",
+            dataIndex: "perm",
+            key: "perm",
             align: "center",
 
         },
         {
             title: "Ratio of Perm to Temp Exp. ", //edit
-            dataIndex: "Operation",
+            dataIndex: "strech",
             key: "id",
             align: "center",
 
         },
         {
             title: "Inspection Results",
-            dataIndex: "Operation",
+            dataIndex: "pass",
             key: "id",
             align: "center",
 
         },
         {
-            title: "Last Year",
-            dataIndex: "LastTstDate",
-            key: "Last Year",
+            title: "Next test date",
+            dataIndex: "NxtTstDate",
+            key: "Next test date",
             align: "center",
 
         },

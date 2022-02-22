@@ -2,7 +2,7 @@ import { Card, Button, Space,Empty, InputNumber, message } from "antd"
 import { updateEntry, getEntrybyRef ,getNewRef,deleteEntry} from "../dbHandler";
 import { useState } from "react";
 import FormComponent from "./Form";
-
+import React from "react";
 const ViewEntry = ()=>{
    
     const [ref, setref] = useState(1)
@@ -23,14 +23,19 @@ const ViewEntry = ()=>{
         formi 
             .validateFields()
             .then(async (values) => {
+               
                 let newValues = values
                 newValues.Id = ref
-                console.log(newValues);
-                updateEntry(Object.values(newValues)).then( () => {
+                newValues.date = values.date.toDate().toUTCString()
+                newValues.lastTestDate = values.lastTestDate.toDate().toUTCString()
+                updateEntry(Object.values(values)).then( () => {
                     message.success("Entry updated")
                 
                     })
-                }).catch(()=>{message.error("Err")})
+                }).catch((values)=>{
+                    console.log("ERROR.....")
+                    console.log(values)
+                    message.error("Failed to update entry")})
 
             
             
@@ -38,13 +43,15 @@ const ViewEntry = ()=>{
     const DeleteHandler = async()=>{
         deleteEntry(ref).then(()=>{
             message.success(" Entry No." + ref + " deleted")
-            window.location.reload()
+            // window.location.reload()
+       handleClick()
         })
     }
+ 
     return <>
     <Space>
            <InputNumber min={1} max={currentRef-1} placeholder="Ref Number" value={ref} onChange={(val)=>{setref(val)}}/> 
-            <Button onClick={handleClick} type="primary"> Load Entry </Button> 
+            <Button  onClick={handleClick} type="primary"> Load Entry </Button> 
 
     </Space>
         <Card style={{ marginTop: "20px" }}>

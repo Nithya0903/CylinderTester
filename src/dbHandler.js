@@ -18,9 +18,12 @@ const getEntrybyRef = async(reference)=>{
 return entry
 }
 const updateEntry = async (values) => {
+    console.log("Trying to update")
     console.log(values);
     window.api.updateEntry(values).then(() => { console.log("updated succesfully"); })
     .catch((err)=>{
+    console.log("couldnt update")
+    console.log(err)
         throw err
     })
 }

@@ -1,6 +1,6 @@
 import {Layout,Col, Row, Typography,Image } from "antd";
 import { Content,Footer} from 'antd/lib/layout/layout';
-import { HashRouter, Route, Switch} from 'react-router-dom';
+import { HashRouter, Route, Routes} from 'react-router-dom';
 import Entry from "./components/Entry"
 import NavBar from "./components/NavBar";
 import Report from "./components/Report";
@@ -28,20 +28,17 @@ function App() {
         </Row>
         <Content className="site-layout">
           <div className="site-layout-background" style={{ minHeight: 480 }}>
-          
-  
-            <Switch>
-              
-              <Route path="/ViewEntry">
-             <ViewEntry />
-              </Route>
-              <Route path="/Report">
-         <Report />
-              </Route>
-              <Route exact path="/">
-                <Entry />
-              </Route>
-              </Switch>
+            <Routes>       
+              <Route path="/ViewEntry"
+                element={<ViewEntry />} 
+              />
+              <Route path="/Report"
+      element={<Report />}
+              />
+              <Route exact path="/"
+               element={<Entry />}
+              />
+              </Routes>
       
              
         

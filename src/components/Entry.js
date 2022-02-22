@@ -17,15 +17,28 @@ const Entry = ()=>{
         form
             .validateFields()
             .then(async (values) => {
-                addEntry(Object.values(values)).then(()=>{
+                values.date = values.date.format()
+                values.lastTestDate = values.lastTestDate.format()
+
+                let V = Object.values(values)
+                V = [ref,...V]
+            console.log(V)
+                addEntry(V).then(()=>{
                     message.success("Entry " +ref + " Added")
                     getNewRef().then(async (r) => {
                         await setref(r)
                         form.resetFields()
+                    }).catch(e=>{
+                        console.log("Error",e)
+                        throw e
+                       
                     })
-                })
+                }).catch(e=> {throw e})
                 
             })
+            .catch(e=>{
+                console.log(e);
+                throw e})
         
     }
     
@@ -40,59 +53,59 @@ return <Card style={{marginTop:"20px"}}>
                     {ref}
                 </Form.Item>
             
-                <Form.Item name="tubeSize" label="Tube Size"  rules={[{ required: true}]}>
+                <Form.Item name="tubeSize" label="Tube Size" rules={[{ required: true, message: "Required" }, { pattern: '^([-]?[1-9][0-9]*|0)$', message: "incorrect input"}]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="date" label="Date" rules={[{ required: true }]}>
+                <Form.Item name="date" label="Date" rules={[{ required: true,message:"required" }]}>
                     <DatePicker format="DD/MM/YY"/>
                 </Form.Item>
-                <Form.Item name="party" label="Party Name" rules={[{ required: true }]}>
+                <Form.Item name="party" label="Party Name" rules={[{ required: true ,message: "Required"}]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="cylinderNo" label="Cylider No" rules={[{ required: true }]}>
+                <Form.Item name="cylinderNo" label="Cylider No" rules={[{ required: true, message: "Required" }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="make" label="Make" rules={[{ required: true }]}>
+                <Form.Item name="make" label="Make" rules={[{ required: true, message: "Required" }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="specNo" label="Specification No" rules={[{ required: true }]}>
+                <Form.Item name="specNo" label="Specification No" rules={[{ required: true, message: "Required" }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="cylinderCapacity" label="Cylinder Capacity"  rules={[{ required: true }]}>
+                <Form.Item name="cylinderCapacity" label="Cylinder Capacity" rules={[{ required: true, message: "Required" }, { pattern: '^([-]?[1-9][0-9]*|0)$', message: "incorrect input"}]}>
                   <Input />
                 </Form.Item>
-                <Form.Item name="originalWeight" label="Original Weight" rules={[{ required: true }]}>
+                <Form.Item name="originalWeight" label="Original Weight" rules={[{ required: true, message: "Required" }, { pattern: '^([-]?[1-9][0-9]*|0)$', message: "incorrect input" }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="currWeight" label="Current Weight" rules={[{ required: true }]}>
+                <Form.Item name="currWeight" label="Current Weight" rules={[{ required: true, message: "Required" }, { pattern: '^([-]?[1-9][0-9]*|0)$', message: "incorrect input"}]}>
                     <Input />
                 </Form.Item>
 
     </Col>
     
     <Col span={12}>
-                <Form.Item name="waterWeight" label="With Water Weight" rules={[{ required: true }]}>
+                <Form.Item name="waterWeight" label="With Water Weight" rules={[{ required: true, message: "Required" }, { pattern: '^([-]?[1-9][0-9]*|0)$', message: "incorrect input"}]}>
                     <Input />
      </Form.Item>
-                <Form.Item name="testPressure" label="Test Pressure" rules={[{ required: true }]}>
+                <Form.Item name="testPressure" label="Test Pressure" rules={[{ required: true, message: "Required" }, { pattern: '^([-]?[1-9][0-9]*|0)$', message: "incorrect input"}]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="lastTestDate" label="Last test Date" rules={[{ required: true }]}>
+                <Form.Item name="lastTestDate" label="Last test Date" rules={[{ required: true, message: "Required" }]}>
                     <DatePicker format="DD/MM/YY"/>
                 </Form.Item>
-                <Form.Item name="C1" label="C1" rules={[{ required: true }]}>
+                <Form.Item name="C1" label="C1" rules={[{ required: true, message: "Required" }, { pattern: '^([-]?[1-9][0-9]*|0)$', message: "incorrect input" }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="C2" label="C2" rules={[{ required: true }]}>
+                <Form.Item name="C2" label="C2" rules={[{ required: true, message: "Required" }, { pattern: '^([-]?[1-9][0-9]*|0)$', message: "incorrect input" }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="C3" label="C3" rules={[{ required: true }]}>
+                <Form.Item name="C3" label="C3" rules={[{ required: true, message: "Required" }, { pattern: '^([-]?[1-9][0-9]*|0)$', message: "incorrect input" }]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="cylWaterCapacity" label="Cyl. Water Capacity" rules={[{ required: true }]}>
+                <Form.Item name="cylWaterCapacity" label="Cyl. Water Capacity" rules={[{ required: true, message: "Required" }, { pattern: '^([-]?[1-9][0-9]*|0)$', message: "incorrect input"}]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="gas" label="Working Gas" rules={[{ required: true}]}>
+                <Form.Item name="gas" label="Working Gas" rules={[{ required: true, message: "Required"}]}>
                     <Select
                         allowClear
                     >
@@ -104,7 +117,7 @@ return <Card style={{marginTop:"20px"}}>
                             <Option value="Nitrous Oxide">Nitrous Oxide</Option>
                     </Select>
                 </Form.Item>
-                <Form.Item name="gasCapacity" label="Capacity gas in c. mts" rules={[{ required: true }]}>
+                <Form.Item name="gasCapacity" label="Gas Capacity" rules={[{ required: true, message: "Required" }, { pattern: '^([-]?[1-9][0-9]*|0)$', message: "incorrect input"}]}>
     <Input />
       </Form.Item>
                 

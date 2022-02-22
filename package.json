@@ -5,32 +5,25 @@
   "main": "public/Main.js",
   "homepage": "./ViewEntry",
   "dependencies": {
-    "@ant-design/icons": "^4.6.2",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^11.2.7",
-    "@testing-library/user-event": "^12.8.3",
-    "antd": "^4.16.2",
-    "concurrently": "^6.2.0",
-    "electron": "^13.1.2",
-    "electron-is-dev": "^2.0.0",
-    "nodemon": "^2.0.7",
-    "react": "^17.0.2",
+    "@ant-design/icons": "^4.0.0",
+    "@react-navigation/native": "^6.0.8",
+    "antd": "^4.18.3",
+    "electron-builder": "^22.14.5",
+    "moment": "^2.29.1",
+    "node-gyp": "^8.4.1",
     "react-dom": "^17.0.2",
-    "react-router": "^5.2.0",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.3",
-    "react-to-print": "^2.0.0-alpha-1",
+    "react-router-dom": "^6.2.1",
+    "react-to-print": "^2.14.3",
     "sqlite": "^4.0.23",
     "sqlite3": "^5.0.2",
-    "wait-on": "^5.3.0",
-    "web-vitals": "^1.1.2"
+    "web-vitals": "^2.1.3"
   },
   "scripts": {
     "start": "npm run dev",
     "start-react": "react-scripts start",
     "build-react": "react-scripts build",
-    "postinstall": "electron-builder install-app-deps",
     "pack-app": "npm run build-react && electron-builder --dir",
+    "postinstall": "electron-builder install-app-deps",
     "pack-build": "electron builder --dir",
     "build": "npm run build-react && electron-builder",
     "test": "react-scripts test",
@@ -76,5 +69,14 @@
         "7z"
       ]
     }
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0",
+    "electron": "^8.0.0",
+    "electron-is-dev": "^2.0.0",
+    "nodemon": "^2.0.15",
+    "react": "^17.0.2",
+    "react-scripts": "^5.0.0",
+    "wait-on": "^6.0.0"
   }
 }

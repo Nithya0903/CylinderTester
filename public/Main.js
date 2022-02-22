@@ -44,22 +44,22 @@ app.setPath(
         ? path.join(app.getAppPath(), 'userdata/') // In development it creates the userdata folder where package.json is
         : path.join(process.resourcesPath, 'userdata/') // In production it creates userdata folder in the resources folder
 );
-app.whenReady().then(async () => {
-    await createWindow(); // Create the mainWindow
+// app.whenReady().then(async () => {
+//     await createWindow(); // Create the mainWindow
 
-    // If you want to add React Dev Tools
-    if (isDev) {
-        await session.defaultSession
-            .loadExtension(
-                path.join(__dirname, `../userdata/extensions/react-dev-tools`) // This folder should have the chrome extension for React Dev Tools. Get it online or from your Chrome extensions folder.
-            )
-            .then((name) => console.log('Dev Tools Loaded'))
-            .catch((err) => console.log(err));
-    }
+//     // If you want to add React Dev Tools
+//     if (isDev) {
+//         await session.defaultSession
+//             .loadExtension(
+//                 path.join(__dirname, `../userdata/extensions/react-dev-tools`) // This folder should have the chrome extension for React Dev Tools. Get it online or from your Chrome extensions folder.
+//             )
+//             .then((name) => console.log('Dev Tools Loaded'))
+//             .catch((err) => console.log(err));
+//     }
 
    
-});
-
+// });
+app.whenReady().then(createWindow);
 // Exiting the app
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
@@ -94,8 +94,9 @@ ipcMain.handle('get-nextref',async (event,args) => {
         filename: dbPath,
         driver: sqlite3.Database
     }).then(async (db) => {
-       const data = await db.get('SELECT Id FROM cylinder_values WHERE Id = (SELECT MAX(Id) FROM cylinder_values)')
-       console.log(data);
+       const data = await db.get('SELECT * FROM cylinder_values WHERE Id = (SELECT MAX(Id) FROM cylinder_values)')
+       console.log(data)
+   console.log("Next ID:", data.Id)
         return data.Id 
 
        
@@ -111,13 +112,13 @@ ipcMain.handle('addEntry', async (event, args) => {
         driver: sqlite3.Database
     }).then(async (db) => {
 
-      
-        db.get('INSERT INTO cylinder_values VALUES (:ref,:tubeSize ,:date,:party,:cylinderNo,:make,:specNo,:cylinderCapacity,:originalWeight,:currWeight,:waterWeight,:testPressure,:lastTestDate,:C1,:C2,:C3,:cylWaterCapacity,:gas,:gasCapacity)',[...args])
+      console.log(args)
+db.get('INSERT INTO cylinder_values VALUES (:ref,:tubeSize ,:date,:party,:cylinderNo,:make,:specNo,:cylinderCapacity,:originalWeight,:currWeight,:waterWeight,:testPressure,:lastTestDate,:C1,:C2,:C3,:cylWaterCapacity,:gas,:gasCapacity)',[...args])
         
 
 
     }).catch((err) => { console.log(err); })
-    
+
 
     })
 
@@ -127,9 +128,10 @@ ipcMain.handle('addEntry', async (event, args) => {
             filename: dbPath,
             driver: sqlite3.Database
         }).then(async (db) => {
-
+console.log("tryning to update")
+console.log(args)
 db.run("UPDATE cylinder_values SET TubeSize = ?, Date = ?, PartyName= ?, Cylinder = ? , Make = ?, Spfno = ?, CylCap = ?, OrgWg = ?, CrtWg= ?, wtrWg = ?, TestPrs = ?, LastTstDate = ?,C1 = ?,C2 =?, C3 =?, Cylwatercap = ?, capgas= ? WHERE Id= ?", args)
-    // console.log(args);
+ 
     //         db.run("UPDATE cylinder_values SET TubeSize = :tubeSize  WHERE Id= :Id ",{':tubeSize' :190,':Id':1})
 .catch((err) => { throw err})
 
@@ -163,7 +165,7 @@ ipcMain.handle('getEntrybyRef', async (event, args) => {
         driver: sqlite3.Database
     }).then(async (db) => {
         const data = await db.get('SELECT * FROM cylinder_values WHERE Id=?', args)
-        // console.log(data);
+        console.log(data);
         return data
 
 
