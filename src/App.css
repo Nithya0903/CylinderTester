@@ -20,6 +20,7 @@
     text-align: left;
     display: block;
     border-radius: 2px 2px 0 0;
+    border-width: 10px;
     border-collapse: separate;
     overflow-x: scroll;
     border-spacing: 0;

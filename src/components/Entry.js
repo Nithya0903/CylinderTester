@@ -62,7 +62,7 @@ return <Card style={{marginTop:"20px"}}>
                 <Form.Item name="party" label="Party Name" rules={[{ required: true ,message: "Required"}]}>
                     <Input />
                 </Form.Item>
-                <Form.Item name="cylinderNo" label="Cylider No" rules={[{ required: true, message: "Required" }]}>
+                <Form.Item name="cylinderNo" label="Cylinder No" rules={[{ required: true, message: "Required" }]}>
                     <Input />
                 </Form.Item>
                 <Form.Item name="make" label="Make" rules={[{ required: true, message: "Required" }]}>

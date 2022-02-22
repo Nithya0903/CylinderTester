@@ -18,8 +18,7 @@ const capitalize = (str)=> {
 }
 
 const convertMoment = (date)=>{
-    console.log(date)
-    console.log(moment(date))
+
     return moment(date)
 }
 const permenantExp = (entry)=>{

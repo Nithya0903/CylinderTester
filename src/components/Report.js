@@ -8,7 +8,7 @@ import { formatDate, capitalize,permenantExp,tempExpansion,weightlossPercentage,
 const ComponentToPrint = React.forwardRef((props, ref) => {
    
 return <div className="printCard" ref={ref} style={{ display: "flex", justifyContent: "center" }}>
-        <Card bordered style={{ width:"90%",marginTop: "10px"}}>
+        <Card  style={{ width:"90%",marginTop: "20px"}}>
             <Row style={{ justifyContent: "center" }}>
                 RECORD OF  INSPECTION OF HYDROSTATIC STRETCH TESTING OF CYLINDERS
             </Row>
@@ -23,7 +23,7 @@ return <div className="printCard" ref={ref} style={{ display: "flex", justifyCon
             <Col span={8}>NO. OF CYLINDERS TESTED: {props.data && props.data[0]?props.data.length : ""}</Col>
             </Row>
             <Row> <br /></Row>
-            <Table
+            <Table bordered className="printtable"
                 columns={props.columns}
                 dataSource={props.data}
             pagination
@@ -78,9 +78,13 @@ const [to,setTo] = useState(100)
              entry.NxtTstDate = after5(entry.Date)
              if (entry.wgtloss <= 5 && entry.strech <= 10 && entry.perm <= entry.Cylwatercap)
              entry.pass = "PASSED"
+             entry.wgtloss =entry.wgtloss.toFixed(3)
+             entry.perm = entry.perm.toFixed(3)
+             entry.temp = entry.temp.toFixed(3)
+             entry.strech = entry.strech.toFixed(3)
              return entry
          })
-         console.log(modified);
+     
          setData(modified)
      })
     }
@@ -95,12 +99,16 @@ useEffect(()=>{
             entry.wgtloss = weightlossPercentage(entry)
             entry.pass = "FAILED"
             entry.NxtTstDate = after5(entry.Date)
-           entry.strech = entry.perm * 100 / entry.temp
+            entry.strech = entry.perm * 100 / entry.temp
+            entry.wgtloss = entry.wgtloss.toFixed(3)
+            entry.perm = entry.perm.toFixed(3)
+            entry.temp = entry.temp.toFixed(3)
+            entry.strech = entry.strech.toFixed(3)
             if (entry.wgtloss <= 5 && entry.strech <= 10 && entry.perm <= entry.Cylwatercap)
                 entry.pass = "PASSED"
             return entry
         })
-        console.log(modified);
+    
         setData(modified)
     })
 },[])
