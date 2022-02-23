@@ -31,6 +31,9 @@ const FormComponent = (props)=>{
                     <Form.Item name="make" label="Make" initialValue={props.initialValues.Make} rules={[{ required: true, message: "Required" }]}>
                     <Input />
                 </Form.Item>
+                    <Form.Item name="mfr" label="MFR No" initialValue={props.initialValues.MFR} rules={[{ required: true, message: "Required" }]}>
+                        <Input />
+                    </Form.Item>
                     <Form.Item name="specNo" label="Specification No" initialValue={props.initialValues.Spfno} rules={[{ required: true , message: "Required"}]}>
                     <Input />
                 </Form.Item>

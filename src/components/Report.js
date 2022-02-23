@@ -142,7 +142,7 @@ useEffect(()=>{
         },
         {
             title: "MFR's Cylinder Number",
-            dataIndex: "Cylinder",
+            dataIndex: "MFR",
             key: "MFR's Cylinder Number",
             align: "center",
         },

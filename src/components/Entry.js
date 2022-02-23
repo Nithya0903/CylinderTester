@@ -68,6 +68,9 @@ return <Card style={{marginTop:"20px"}}>
                 <Form.Item name="make" label="Make" rules={[{ required: true, message: "Required" }]}>
                     <Input />
                 </Form.Item>
+                <Form.Item name="mfr" label="MFR No" rules={[{ required: true, message: "Required" }]}>
+                    <Input />
+                </Form.Item>
                 <Form.Item name="specNo" label="Specification No" rules={[{ required: true, message: "Required" }]}>
                     <Input />
                 </Form.Item>

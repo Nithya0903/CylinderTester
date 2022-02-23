@@ -96,7 +96,7 @@ ipcMain.handle('addEntry', async (event, args) => {
     }).then(async (db) => {
 
 
-db.get('INSERT INTO cylinder_values VALUES (:ref,:tubeSize ,:date,:party,:cylinderNo,:make,:specNo,:cylinderCapacity,:originalWeight,:currWeight,:waterWeight,:testPressure,:lastTestDate,:C1,:C2,:C3,:cylWaterCapacity,:gas,:gasCapacity)',[...args])
+db.get('INSERT INTO cylinder_values VALUES (:ref,:tubeSize ,:date,:party,:cylinderNo,:make,:mfr,:specNo,:cylinderCapacity,:originalWeight,:currWeight,:waterWeight,:testPressure,:lastTestDate,:C1,:C2,:C3,:cylWaterCapacity,:gas,:gasCapacity)',[...args])
         
 
 
@@ -111,8 +111,8 @@ db.get('INSERT INTO cylinder_values VALUES (:ref,:tubeSize ,:date,:party,:cylind
             filename: dbPath,
             driver: sqlite3.Database
         }).then(async (db) => {
-
-db.run("UPDATE cylinder_values SET TubeSize = ?, Date = ?, PartyName= ?, Cylinder = ? , Make = ?, Spfno = ?, CylCap = ?, OrgWg = ?, CrtWg= ?, wtrWg = ?, TestPrs = ?, LastTstDate = ?,C1 = ?,C2 =?, C3 =?, Cylwatercap = ?, gas=?,capgas= ? WHERE Id= ?", args)
+console.log(args)
+db.run("UPDATE cylinder_values SET TubeSize = ?, Date = ?, PartyName= ?, Cylinder = ? , Make = ?,MFR =?,Spfno = ?, CylCap = ?, OrgWg = ?, CrtWg= ?, wtrWg = ?, TestPrs = ?, LastTstDate = ?,C1 = ?,C2 =?, C3 =?, Cylwatercap = ?, gas=?,capgas= ? WHERE Id= ?", args)
  
     //         db.run("UPDATE cylinder_values SET TubeSize = :tubeSize  WHERE Id= :Id ",{':tubeSize' :190,':Id':1})
 .catch((err) => { throw err})
