@@ -3,6 +3,8 @@ const isDev = require('electron-is-dev'); // To check if electron is in developm
 const path = require('path');
 const sqlite3 = require('sqlite3');
 const { open } = require('sqlite')
+const logger = require('electron-log');
+logger.log("some text")
 let mainWindow;
 const createWindow = () => {
     mainWindow = new BrowserWindow({
@@ -30,10 +32,12 @@ const createWindow = () => {
     
     // In development mode, if the window has loaded, then load the dev tools.
     // if (isDev) {
-    //     mainWindow.webContents.on('did-frame-finish-load', () => {
-    //         mainWindow.webContents.openDevTools({ mode: 'detach' });
-    //     });
+        mainWindow.webContents.on('did-frame-finish-load', () => {
+            mainWindow.webContents.openDevTools({ mode: 'detach' });
+        });
+
     // }
+    //mainWindow.webContents.send('asynchronous-message', process.resourcesPath);
 };
 
 app.setPath(
@@ -69,8 +73,10 @@ process.on('uncaughtException', (error) => {
 
  const dbPath =    isDev
         ? path.join(__dirname, '../db/cylinderValues.db') // my root folder if in dev mode
-        : path.join(process.resourcesPath, 'db/cylinderValues.db') // the resources path if in production build
+        : path.join(process.resourcesPath, '/cylinderValues.db') // the resources path if in production build
    
+// console.log(process.resourcesPath)
+
 
 ipcMain.handle('get-nextref',async (event,args) => {
 
@@ -78,8 +84,9 @@ ipcMain.handle('get-nextref',async (event,args) => {
         filename: dbPath,
         driver: sqlite3.Database
     }).then(async (db) => {
-       const data = await db.get('SELECT * FROM cylinder_values WHERE Id = (SELECT MAX(Id) FROM cylinder_values)')
 
+       const data = await db.get('SELECT * FROM cylinder_values WHERE Id = (SELECT MAX(Id) FROM cylinder_values)')
+ 
         return data.Id 
 
        
@@ -100,7 +107,7 @@ db.get('INSERT INTO cylinder_values VALUES (:ref,:tubeSize ,:date,:party,:cylind
         
 
 
-    }).catch((err) => { console.log(err); })
+    }).catch((err) => { logger.log(err); })
 
 
     })
@@ -111,7 +118,7 @@ db.get('INSERT INTO cylinder_values VALUES (:ref,:tubeSize ,:date,:party,:cylind
             filename: dbPath,
             driver: sqlite3.Database
         }).then(async (db) => {
-console.log(args)
+
 db.run("UPDATE cylinder_values SET TubeSize = ?, Date = ?, PartyName= ?, Cylinder = ? , Make = ?,MFR =?,Spfno = ?, CylCap = ?, OrgWg = ?, CrtWg= ?, wtrWg = ?, TestPrs = ?, LastTstDate = ?,C1 = ?,C2 =?, C3 =?, Cylwatercap = ?, gas=?,capgas= ? WHERE Id= ?", args)
  
     //         db.run("UPDATE cylinder_values SET TubeSize = :tubeSize  WHERE Id= :Id ",{':tubeSize' :190,':Id':1})

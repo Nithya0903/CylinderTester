@@ -14,4 +14,8 @@ contextBridge.exposeInMainWorld('api', {
     getEntrybyRef: (args) => ipcRenderer.invoke('getEntrybyRef', args),
     updateEntry: (args) => ipcRenderer.invoke('updateEntry', args),
     deleteEntry: (args) => ipcRenderer.invoke('deleteEntry', args),
+    
 });
+// ipcRenderer.on('asynchronous-message', (event, data) => {
+//     document.getElementById('log').insertAdjacentHTML('beforeend', data + "<br>");
+// })
